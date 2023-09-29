@@ -49,7 +49,8 @@ Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken 
 
 ## 😓 Hilfe
 
-**Bei hilfe mich kontaktieren! Discord: "Bebedi"**
+**Bei Hilfe mich kontaktieren!**
+**Discord: "Bebedi"**
 
 ## 🤝 Beitrag
 
