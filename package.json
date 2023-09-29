@@ -1,12 +1,12 @@
 {
-  "name": "komm",
+  "name": "inflationschecker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dieses Skript überwacht auf Änderungen in den Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Bebedi",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.5.1",
