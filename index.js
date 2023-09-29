@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
 
-const DISCORD_WEBHOOK_URL = 'https://ptb.discord.com/api/webhooks/1157061675908870257/_BBuUHyQxF2jrVVF23vQui22jv3H7B6JxWbhd_Hk9zSnby4Dfwt33pJN0juhcxaN5DLY';
+const DISCORD_WEBHOOK_URL = '';
 const DATA_FILE_PATH = 'data.json';
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
 const IMAGE_PATH = 'image.png';
