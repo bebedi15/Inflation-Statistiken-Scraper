@@ -45,7 +45,7 @@ Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistik
     node index.js
     ```
 
-4. Nach starten des Programmes, wird es jede 30 Minute checken ob es eine neue Inflations Statistik gibt, und sie dann rein Schicken. Das Skript wird die Website auf Änderungen überwachen und Sie über den Discord-Webhook benachrichtigen, wenn eine Änderung festgestellt wird.
+4. Das Skript wird die Website auf Änderungen überwachen und Sie über den Discord-Webhook benachrichtigen, wenn eine Änderung festgestellt wird.
 
 ## 🤝 Beitrag
 
