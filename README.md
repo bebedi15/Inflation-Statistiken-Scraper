@@ -7,7 +7,7 @@
 
 Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
 
-Bei hilfe mich kontaktieren! Discord: "Bebedi"
+**Bei hilfe mich kontaktieren! Discord: "Bebedi"**
 
 ![Image Downloader logo](https://i.imgur.com/fwbveCp.png)
 
