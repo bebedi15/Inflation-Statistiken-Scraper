@@ -10,13 +10,13 @@ const DATA_FILE_PATH = 'data.json';
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
 const IMAGE_PATH = 'image.png';
 
-// Diese Funktion wird am Programmstart aufgerufen, um die Daten zurückzusetzen
+
 function resetData() {
-  fs.unlinkSync(DATA_FILE_PATH); // Löscht die Datei, falls sie existiert
-  fs.writeFileSync(DATA_FILE_PATH, '{}', 'utf8'); // Erstellt eine leere Datei
+  fs.unlinkSync(DATA_FILE_PATH);
+  fs.writeFileSync(DATA_FILE_PATH, '{}', 'utf8'); 
 }
 
-// Funktion zum Scrapen der Website und Extrahieren der Texte
+
 async function scrapeWebsite() {
   try {
     const url = 'https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html';
@@ -29,26 +29,26 @@ async function scrapeWebsite() {
 
     targetElements.each((index, element) => {
       const text = $(element).text().trim();
-      const matches = text.match(/\+\s*(\d+,\d+)\s*%/); // Regulärer Ausdruck zum Extrahieren der Zahlen mit Komma
+      const matches = text.match(/\+\s*(\d+,\d+)\s*%/);
       if (matches) {
         newData[`Daten ${index + 1}`] = `+${matches[1]}`;
       }
     });
 
-    // Laden der alten Daten, wenn vorhanden
+  
     let oldData = {};
     if (fs.existsSync(DATA_FILE_PATH)) {
       oldData = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf8'));
     }
 
-    // Vergleich der alten und neuen Daten
+
     const hasChanged = Object.keys(oldData).length === 0 || JSON.stringify(oldData) !== JSON.stringify(newData);
 
     if (hasChanged) {
-      // Speichern der neuen Daten
+
       fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(newData), 'utf8');
 
-      // Herunterladen und Speichern des Bilds
+
       const imageResponse = await axios.get(IMAGE_URL, { responseType: 'stream' });
       const imagePath = path.join(__dirname, IMAGE_PATH);
 
@@ -60,14 +60,14 @@ async function scrapeWebsite() {
         imageFile.on('error', reject);
       });
 
-      // Benachrichtigung über Discord-Webhook senden
+
       const message = {
         content: 'Es gab eine Änderung in den Daten:',
         embeds: [
           {
             title: 'Neue Daten',
             description: `**Inflationsrate (vorläufig):** \`${newData['Daten 1'] || 'Nicht gefunden'}\`\n**Verbraucherpreise Energie:** \`${newData['Daten 2'] || 'Nicht gefunden'}\`\n**Verbraucherpreise Nahrungsmittel:** \`${newData['Daten 3'] || 'Nicht gefunden'}\` \n\r [Quelle](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)`,
-            color: 0x00ff00, // Grün
+            color: 0x00ff00, 
             image: {
               url: `attachment://${IMAGE_PATH}`,
             },
@@ -99,10 +99,10 @@ async function scrapeWebsite() {
   }
 }
 
-// Diese Funktion wird am Programmstart und dann alle 30 Minuten aufgerufen
+
 function startScraping() {
   console.log('Programm wird gestartet...');
-  resetData(); // Daten zurücksetzen
+  resetData(); 
   scrapeWebsite();
   
   cron.schedule('*/30 * * * *', () => {
@@ -111,5 +111,5 @@ function startScraping() {
   });
 }
 
-// Programm starten
+
 startScraping();
