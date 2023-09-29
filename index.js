@@ -10,6 +10,12 @@ const DATA_FILE_PATH = 'data.json';
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
 const IMAGE_PATH = 'image.png';
 
+// Diese Funktion wird am Programmstart aufgerufen, um die Daten zurückzusetzen
+function resetData() {
+  fs.unlinkSync(DATA_FILE_PATH); // Löscht die Datei, falls sie existiert
+  fs.writeFileSync(DATA_FILE_PATH, '{}', 'utf8'); // Erstellt eine leere Datei
+}
+
 // Funktion zum Scrapen der Website und Extrahieren der Texte
 async function scrapeWebsite() {
   try {
@@ -93,10 +99,17 @@ async function scrapeWebsite() {
   }
 }
 
-cron.schedule('*/30 * * * *', () => {
-  console.log('Scraper wird alle 30 Minuten ausgeführt...');
+// Diese Funktion wird am Programmstart und dann alle 30 Minuten aufgerufen
+function startScraping() {
+  console.log('Programm wird gestartet...');
+  resetData(); // Daten zurücksetzen
   scrapeWebsite();
-});
+  
+  cron.schedule('*/30 * * * *', () => {
+    console.log('Scraper wird alle 30 Minuten ausgeführt...');
+    scrapeWebsite();
+  });
+}
 
-
-
+// Programm starten
+startScraping();
