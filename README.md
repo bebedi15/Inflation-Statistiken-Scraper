@@ -5,7 +5,7 @@
 
 # 📈 Inflation Statistiken Scraper
 
-Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript lädt außerdem das Bild herunter, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
+Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
 
 ![Image Downloader logo](https://i.imgur.com/fwbveCp.png)
 
@@ -45,7 +45,7 @@ Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistik
     node index.js
     ```
 
-4. Das Skript wird die Website auf Änderungen überwachen und Sie über den Discord-Webhook benachrichtigen, wenn eine Änderung festgestellt wird.
+4. Nach starten des Programmes, wird es jede 30 Minute checken ob es eine neue Inflations Statistik gibt, und sie dann rein Schicken. Das Skript wird die Website auf Änderungen überwachen und Sie über den Discord-Webhook benachrichtigen, wenn eine Änderung festgestellt wird.
 
 ## 🤝 Beitrag
 
