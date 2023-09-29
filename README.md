@@ -30,7 +30,7 @@ Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistik
 
 1. Öffnen Sie die `index.js`-Datei in einem Texteditor Ihrer Wahl.
 
-2. Fügen Sie die Discord Webhook URL in die ```js const DISCORD_WEBHOOK_URL``` Variable
+2. Fügen Sie die Discord Webhook URL in die ```const DISCORD_WEBHOOK_URL``` Variable
 
 3. Führen Sie das Skript aus, indem Sie den folgenden Befehl in Ihrem Terminal ausführen:
 
