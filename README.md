@@ -30,7 +30,7 @@ Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistik
 
 1. Öffnen Sie die `index.js`-Datei in einem Texteditor Ihrer Wahl.
 
-2. Konfigurieren Sie die Discord-Webhook-URL, den Dateipfad für die gespeicherten Daten und die URL des Bilds, das Sie überwachen möchten, indem Sie die entsprechenden Variablen in der Datei ändern.
+2. Fügen Sie die Discord Webhook URL in die ```js const DISCORD_WEBHOOK_URL``` Variable
 
 3. Führen Sie das Skript aus, indem Sie den folgenden Befehl in Ihrem Terminal ausführen:
 
