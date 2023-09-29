@@ -1,5 +1,5 @@
 {
-  "name": "inflationschecker",
+  "name": "Inflation Statistiken Scraper",
   "version": "1.0.0",
   "description": "Dieses Skript überwacht auf Änderungen in den Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.",
   "main": "index.js",
