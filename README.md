@@ -1,5 +1,3 @@
-![Image Downloader logo](https://i.imgur.com/fwbveCp.png)
-
 <div align='center'>
   <img src='https://img.shields.io/badge/License-MIT-blue.svg'>
   <a href="https://linksta.cc/@Bebedi"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
@@ -8,6 +6,8 @@
 # 📈 Inflation Statistiken Scraper
 
 Dieses Skript überwacht eine Website auf Änderungen in den Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript lädt außerdem das Bild herunter, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
+
+![Image Downloader logo](https://i.imgur.com/fwbveCp.png)
 
 ## 📋 Voraussetzungen
 
