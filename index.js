@@ -5,17 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
 
-const DISCORD_WEBHOOK_URL = '';
+const DISCORD_WEBHOOK_URL = 'WEEBHOOK_URL_HIER';
 const DATA_FILE_PATH = 'data.json';
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
 const IMAGE_PATH = 'image.png';
-
-
-function resetData() {
-  fs.unlinkSync(DATA_FILE_PATH);
-  fs.writeFileSync(DATA_FILE_PATH, '{}', 'utf8'); 
-}
-
 
 async function scrapeWebsite() {
   try {
@@ -23,32 +16,44 @@ async function scrapeWebsite() {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
 
-    const targetElements = $('.c-stat__link');
+    const inflationData = {
+      Inflationsrate: '',
+      VerbraucherpreiseEnergie: '',
+      VerbraucherpreiseNahrungsmittel: '',
+    };
 
-    const newData = {};
+    const targetElements = $('.c-stat__link');
 
     targetElements.each((index, element) => {
       const text = $(element).text().trim();
-      const matches = text.match(/\+\s*(\d+,\d+)\s*%/);
-      if (matches) {
-        newData[`Daten ${index + 1}`] = `+${matches[1]}`;
+      if (text.includes('Inflations­rate')) {
+        const matches = text.match(/\+\s*(\d+,\d+)\s*%/);
+        if (matches) {
+          inflationData.Inflationsrate = `+${matches[1]}`;
+        }
+      } else if (text.includes('Verbraucherpreise Energie')) {
+        const matches = text.match(/(\d+,\d+)\s*%/);
+        if (matches) {
+          inflationData.VerbraucherpreiseEnergie = `${matches[1]}`;
+        }
+      } else if (text.includes('Verbraucherpreise Nahrungsmittel')) {
+        const matches = text.match(/(\d+,\d+)\s*%/);
+        if (matches) {
+          inflationData.VerbraucherpreiseNahrungsmittel = `${matches[1]}`;
+        }
       }
     });
 
-  
-    let oldData = {};
-    if (fs.existsSync(DATA_FILE_PATH)) {
-      oldData = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf8'));
-    }
+    // Save the extracted data to the data.json file
 
+    // Check for changes and send a message to Discord
+    const oldData = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf8'));
 
-    const hasChanged = Object.keys(oldData).length === 0 || JSON.stringify(oldData) !== JSON.stringify(newData);
+    const hasChanged =
+      Object.keys(oldData).length === 0 || JSON.stringify(oldData) !== JSON.stringify(inflationData);
 
     if (hasChanged) {
-
-      fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(newData), 'utf8');
-
-
+      fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(inflationData), 'utf8');
       const imageResponse = await axios.get(IMAGE_URL, { responseType: 'stream' });
       const imagePath = path.join(__dirname, IMAGE_PATH);
 
@@ -60,14 +65,13 @@ async function scrapeWebsite() {
         imageFile.on('error', reject);
       });
 
-
       const message = {
         content: 'Es gab eine Änderung in den Daten:',
         embeds: [
           {
             title: 'Neue Daten',
-            description: `**Inflationsrate (vorläufig):** \`${newData['Daten 1'] || 'Nicht gefunden'}\`\n**Verbraucherpreise Energie:** \`${newData['Daten 2'] || 'Nicht gefunden'}\`\n**Verbraucherpreise Nahrungsmittel:** \`${newData['Daten 3'] || 'Nicht gefunden'}\` \n\r [Quelle](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)`,
-            color: 0x00ff00, 
+            description: `**Inflationsrate (vorläufig):** \`${inflationData.Inflationsrate || 'Nicht gefunden'}\`\n**Verbraucherpreise Energie:** \`${inflationData.VerbraucherpreiseEnergie || 'Nicht gefunden'}\`\n**Verbraucherpreise Nahrungsmittel:** \`${inflationData.VerbraucherpreiseNahrungsmittel || 'Nicht gefunden'}\` \n\r [Quelle](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)`,
+            color: 0x00ff00,
             image: {
               url: `attachment://${IMAGE_PATH}`,
             },
@@ -99,17 +103,14 @@ async function scrapeWebsite() {
   }
 }
 
-
 function startScraping() {
   console.log('Programm wird gestartet...');
-  resetData(); 
   scrapeWebsite();
-  
-  cron.schedule('*/30 * * * *', () => {
+
+  cron.schedule('*/01 * * * *', () => {
     console.log('Scraper wird alle 30 Minuten ausgeführt...');
     scrapeWebsite();
   });
 }
-
 
 startScraping();
