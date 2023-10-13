@@ -107,7 +107,7 @@ function startScraping() {
   console.log('Programm wird gestartet...');
   scrapeWebsite();
 
-  cron.schedule('*/01 * * * *', () => {
+  cron.schedule('*/30 * * * *', () => {
     console.log('Scraper wird alle 30 Minuten ausgeführt...');
     scrapeWebsite();
   });
