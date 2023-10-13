@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
 
-const DISCORD_WEBHOOK_URL = 'WEEBHOOK_URL_HIER';
+const DISCORD_WEBHOOK_URL = '';
 const DATA_FILE_PATH = 'data.json';
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
 const IMAGE_PATH = 'image.png';
@@ -69,9 +69,9 @@ async function scrapeWebsite() {
         content: 'Es gab eine Änderung in den Daten:',
         embeds: [
           {
-            title: 'Neue Daten',
-            description: `**Inflationsrate (vorläufig):** \`${inflationData.Inflationsrate || 'Nicht gefunden'}\`\n**Verbraucherpreise Energie:** \`${inflationData.VerbraucherpreiseEnergie || 'Nicht gefunden'}\`\n**Verbraucherpreise Nahrungsmittel:** \`${inflationData.VerbraucherpreiseNahrungsmittel || 'Nicht gefunden'}\` \n\r [Quelle](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)`,
-            color: 0x00ff00,
+            title: 'Neue Daten',          
+            description: `*Veränderungsraten zum Vorjahresmonat in %* \n\r**Inflationsrate (vorläufig):** \`${inflationData.Inflationsrate || 'Nicht gefunden'} %\`\n**Verbraucherpreise Energie:** \`${inflationData.VerbraucherpreiseEnergie || 'Nicht gefunden'} %\`\n**Verbraucherpreise Nahrungsmittel:** \`${inflationData.VerbraucherpreiseNahrungsmittel || 'Nicht gefunden'} %\` \n\r [Quelle](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)`,
+            color: 0x00ff00,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
             image: {
               url: `attachment://${IMAGE_PATH}`,
             },
