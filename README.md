@@ -18,6 +18,7 @@ Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken 
   - node-cron
   - fs
   - path
+  - discord.js
 
 ## 🛠️ Installation
 
