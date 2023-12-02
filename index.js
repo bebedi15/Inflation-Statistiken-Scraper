@@ -10,15 +10,15 @@ const path = require('path');
 
 const FormData = require('form-data');
 
+const {AttachmentBuilder} = require('discord.js')
 
 
-const DISCORD_WEBHOOK_URL = '';
+
+const DISCORD_WEBHOOK_URL = 'WEBHOOK_URL_HERE';
 
 const DATA_FILE_PATH = 'data.json';
 
 const IMAGE_URL = 'https://www.mehrwertsteuerrechner.de/wp-content/uploads/inflation/Inflation-Deutschland.png';
-
-const IMAGE_PATH = 'image.png';
 
 
 
@@ -110,25 +110,8 @@ async function scrapeWebsite() {
 
       fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(inflationData), 'utf8');
 
-      const imageResponse = await axios.get(IMAGE_URL, { responseType: 'stream' });
 
-      const imagePath = path.join(__dirname, IMAGE_PATH);
-
-
-
-      const imageFile = fs.createWriteStream(imagePath);
-
-      imageResponse.data.pipe(imageFile);
-
-
-
-      await new Promise((resolve, reject) => {
-
-        imageFile.on('finish', resolve);
-
-        imageFile.on('error', reject);
-
-      });
+      const file = new AttachmentBuilder(IMAGE_URL)
 
 
 
@@ -148,7 +131,7 @@ async function scrapeWebsite() {
 
             image: {
 
-              url: `attachment://${IMAGE_PATH}`,
+              url: file.attachment,
 
             },
 
@@ -164,7 +147,6 @@ async function scrapeWebsite() {
 
       formData.append('payload_json', JSON.stringify(message));
 
-      formData.append('file', fs.createReadStream(imagePath));
 
 
 
