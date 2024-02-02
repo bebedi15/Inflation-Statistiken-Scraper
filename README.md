@@ -1,7 +1,7 @@
 <div align='center'>
   <img src='https://img.shields.io/badge/License-MIT-blue.svg'>
   <a href="https://linksta.cc/@Bebedi"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"></a>
-  <a href="https://repl.it/github/bebedi15/Inflation-Statistiken-Scraper"><img src="https://replit.com/badge/github/bebedi15/Inflation-Statistiken-Scraper"></a>
+  <a href="https://replit.com/@bebedi15/Inflation-Statistiken-Scraper"><img src="https://replit.com/badge/github/bebedi15/Inflation-Statistiken-Scraper"></a>
 </div>
 
 # 📈 Inflation Statistiken Scraper
