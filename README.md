@@ -6,9 +6,10 @@
 
 # 📈 Inflation Statistiken Scraper
 
-Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
+Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken und Bruttoinlandsprodukt statistiken und benachrichtigt Sie über einen Discord-Webhook, wenn Änderungen festgestellt werden. Das Skript schickt außerdem das Bild, das die Inflationsdaten visualisiert, und fügt es der Benachrichtigung hinzu.
 
 ![Image Downloader logo](https://i.imgur.com/fwbveCp.png)
+![Image Downloader logo](https://i.imgur.com/xu2lb3F.png)
 
 ## 📋 Voraussetzungen
 
@@ -37,9 +38,11 @@ Dieses Skript überwacht auf Änderungen in den Deutschen Inflationsstatistiken 
 
 ## 💻 Verwendung
 
-1. Öffnen Sie die `index.js`-Datei in einem Texteditor Ihrer Wahl.
+1. Öffnen Sie die `config.json`-Datei in einem Texteditor Ihrer Wahl.
 
-2. Fügen Sie die Discord Webhook URL in die ```const DISCORD_WEBHOOK_URL``` Variable
+2. Fügen Sie die Discord Webhook URL/URLS in die ```Webhook``` Variable\n
+
+3. Setzen Sie die bestimmten Optionen (Bruttoinlandsprodukt, Inflation) auf true oder false, sie entscheiden welche Nachrichten gesendet werden sollen.
 
 3. Führen Sie das Skript aus, indem Sie den folgenden Befehl in Ihrem Terminal ausführen:
 
