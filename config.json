@@ -1,0 +1,10 @@
+{
+    "toggle": {
+        "inflation": false,
+        "Bruttoinlandsprodukt": false
+    },
+    "webhooks": {
+        "inflation-webhook": "",
+        "Bruttoinlandsprodukt-webhook": ""
+    }
+}
